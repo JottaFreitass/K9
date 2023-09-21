@@ -77,7 +77,7 @@ private void Movimento()
         {
             if (possoDarDisparoTriplo == true)
             {
-                Instantiate(disparoTriplo, transform.position + new Vector3(0, 1.1f, 0), Quaternion.identity);
+                Instantiate(disparoTriplo, transform.position + new Vector3(65f, -5.1f, 0), Quaternion.identity);
 
             }
             else
