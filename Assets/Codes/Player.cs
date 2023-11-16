@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Jobs;
+
 
 public class Player : MonoBehaviour
 {
-    public float veloc ;
+    public float veloc;
     public float entradaHorizontal;
     public float entradaVertical;
     public GameObject pfLaser;
@@ -13,14 +16,30 @@ public class Player : MonoBehaviour
     public bool possoDarDisparoTriplo = false;
     public GameObject disparoTriplo;
     public int vidas = 3;
+    private GerenciadorDeUI _uiGerenciador;
+    private GerenciadorDoJogo _gerenciadorDoJogo;
+
+
+    [SerializeField] private GameObject _explosaoPlayerPrefab;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Método Start de "+this.name);
-        veloc = 3.0f ;
-        transform.position = new Vector3 (0,0,0);
+        Debug.Log("Método Start de " + this.name);
+        veloc = 3.0f;
+        transform.position = new Vector3(0, 0, 0);
+
+        _gerenciadorDoJogo = GameObject.Find("GerenciadorDoJogo").GetComponent<GerenciadorDoJogo>();
+
+
+        _uiGerenciador = GameObject.Find("Canvas").GetComponent<GerenciadorDeUI>();
+        if (_uiGerenciador != null)
+        {
+            _uiGerenciador.AtualizarVidas(vidas);
+        }
+
     }
 
     // Update is called once per frame
@@ -30,22 +49,25 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
+
             if (Time.time > podeDisparar)
             {
                 if (possoDarDisparoTriplo == true)
                 {
-                    Instantiate(disparoTriplo, transform.position + new Vector3(0, 1.1f, 0), Quaternion.identity);
+                    Instantiate(disparoTriplo, transform.position + new Vector3(65f, -5.1f, 0), Quaternion.identity);
+
                 }
                 else
                 {
                     Instantiate(pfLaser, transform.position + new Vector3(0, 1.1f, 0), Quaternion.identity);
                 }
+
                 podeDisparar = Time.time + tempoDeDisparo;
             }
         }
     }
 
-private void Movimento()
+    private void Movimento()
     {
         entradaHorizontal = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * entradaHorizontal * Time.deltaTime * veloc);
@@ -71,24 +93,6 @@ private void Movimento()
             transform.position = new Vector3(transform.position.x, 6.8f, 0);
         }
     }
-    private void Disparo()
-    {
-        if (Time.time > podeDisparar)
-        {
-            if (possoDarDisparoTriplo == true)
-            {
-                Instantiate(disparoTriplo, transform.position + new Vector3(65f, -5.1f, 0), Quaternion.identity);
-
-            }
-            else
-            {
-                Instantiate(pfLaser, transform.position + new Vector3(0, 1.1f, 0), Quaternion.identity);
-            }
-
-            podeDisparar = Time.time + tempoDeDisparo;
-
-        }
-    }
 
     public IEnumerator DisparoTriploRotina()
     {
@@ -100,14 +104,28 @@ private void Movimento()
     {
         possoDarDisparoTriplo |= true;
         StartCoroutine(DisparoTriploRotina());
-        }
+    }
+
 
     public void DanoAoPlayer()
-        {
+    {
+        // vidas = vidas - 1;
         vidas--;
-        if (vidas < 1)
+
+        _uiGerenciador.AtualizarVidas(vidas);
+
+
+        if (vidas == 0)
         {
+            Instantiate(_explosaoPlayerPrefab, transform.position, Quaternion.identity);
+
+            _uiGerenciador.ExibirTelaInicial();
+            new WaitForSeconds(0.06f);
+            _gerenciadorDoJogo.fimDeJogo = true;
+
             Destroy(this.gameObject);
         }
     }
+
+
 }
