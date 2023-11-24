@@ -106,8 +106,10 @@ MonoBehaviour:
   tempoDeDisparo: 0.3
   podeDisparar: 0
   possoDarDisparoTriplo: 0
-  disparoTriplo: {fileID: 7608056646865808339, guid: 761a28d713ff8b74a853831ba2e060e5, type: 3}
+  disparoTriplo: {fileID: 4009757066977679437, guid: db9f8747d3288c74da82d5663d410864, type: 3}
   vidas: 3
+  PodeeEncerrar: 0
+  _disparoTriploPrefab: {fileID: 4009757066977679437, guid: db9f8747d3288c74da82d5663d410864, type: 3}
   _explosaoPlayerPrefab: {fileID: 5324014254988509040, guid: 36f2ba1e5725acd4cbbb49e14b33ec56, type: 3}
 --- !u!50 &8230177641824204126
 Rigidbody2D:

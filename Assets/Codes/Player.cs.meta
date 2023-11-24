@@ -3,7 +3,10 @@ guid: 73fd97b7f21b08641a13aaf1284b12bf
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - pfLaser: {fileID: 6232509990408102342, guid: 307ef5e95f8309047870f21e66ba0337, type: 3}
+  - disparoTriplo: {fileID: 7608056646865808339, guid: 761a28d713ff8b74a853831ba2e060e5, type: 3}
+  - _explosaoPlayerPrefab: {fileID: 5324014254988509040, guid: 36f2ba1e5725acd4cbbb49e14b33ec56, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

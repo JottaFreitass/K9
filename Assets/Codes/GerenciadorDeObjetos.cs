@@ -8,7 +8,8 @@ public class GerenciadorDeObjetos : MonoBehaviour
     [SerializeField] private GameObject _inimigoPrefab;
 
     [SerializeField] private GameObject[] _powerUps;
-
+ 
+    [SerializeField] private GameObject _K9Prefab;
 
 
     void Start()
@@ -16,6 +17,8 @@ public class GerenciadorDeObjetos : MonoBehaviour
         StartCoroutine(RotinaInimigo());
 
         StartCoroutine(RotinaGeracaoPowerUp());
+
+        K9();
     }
         
 
@@ -24,7 +27,7 @@ public class GerenciadorDeObjetos : MonoBehaviour
         while (1 == 1)
         {
             Instantiate(_inimigoPrefab, new Vector3(16.9F, Random.Range(-3.3f, 3.3f), 0), Quaternion.identity);
-            yield return new WaitForSeconds(6);
+            yield return new WaitForSeconds(2);
         }
     }
 
@@ -36,5 +39,10 @@ public class GerenciadorDeObjetos : MonoBehaviour
             Instantiate(_powerUps[powerUpsAleatorio], new Vector3(16.9f, Random.Range(-3.3f, 3.3f), 0), Quaternion.identity);
             yield return new WaitForSeconds(6);
         }
+    }
+
+    private void K9()
+    {
+        Instantiate(_K9Prefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 }

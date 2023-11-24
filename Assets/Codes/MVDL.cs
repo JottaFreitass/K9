@@ -16,7 +16,8 @@ public class MVDL : MonoBehaviour
     {
         transform.Translate(Vector3.right * velocLaser * Time.deltaTime);
 
-        if (transform.position.x > 10.5f){
+        if (transform.position.x > 16.5f)
+        {
             Destroy(this.gameObject);
         }
     }

@@ -9,7 +9,6 @@ using UnityEngine.UI;
     public int placar = 0;
     public Text textoDoPlacar;
     public Image mostrarImagemDasVidas;
-    public GameObject telaInicial;
 
 
     void Start()
@@ -33,15 +32,5 @@ using UnityEngine.UI;
         placar = placar + 100;
 
         textoDoPlacar.text = "PLACAR: " + placar.ToString();
-    }
-
-    public void EsconderTelaInicial()
-    {
-        telaInicial.SetActive(false);
-    }
-
-    public void ExibirTelaInicial()
-    {
-        telaInicial.SetActive(true);
     }
 }

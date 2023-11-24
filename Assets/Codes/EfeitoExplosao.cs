@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class EfeitoExplosao : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
+    public bool PodeeEncerrar = false;
+    private GerenciadorDeUI _uiGerenciador;
+    private GerenciadorDoJogo _gerenciadorDoJogo;
+    
+
     void Start()
     {
-        Destroy(gameObject, 4f);
+        Destroy(gameObject, 1f);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

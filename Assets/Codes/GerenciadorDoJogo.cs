@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GerenciadorDoJogo : MonoBehaviour
 {
-    public GameObject player;
+    
 
     public bool fimDeJogo = true;
 
@@ -19,14 +19,6 @@ public class GerenciadorDoJogo : MonoBehaviour
 
     void Update()
     {
-        if (fimDeJogo == true)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Instantiate(player, Vector3.zero, Quaternion.identity);
-                fimDeJogo = false;
-                _gerenciadorDeUI.EsconderTelaInicial();
-            }
-        }
+        
     }
 }
